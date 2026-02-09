@@ -1,0 +1,36 @@
+# ===== Entorno y secrets =====
+.env
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ===== Datos que NO van al repo =====
+# Exports HTML de Telegram (39 MB, datos fuente ya procesados)
+chats/
+
+# Sesiones Telethon (credenciales de Telegram)
+sessions/
+
+# Cache del modelo HuggingFace (42 MB, se descarga en el Dockerfile)
+temp_hf/
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Claude Code =====
+.claude/

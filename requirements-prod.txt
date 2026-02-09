@@ -1,0 +1,38 @@
+# =============================================
+# Requirements para produccion (Railway / Docker)
+# Optimizado: PyTorch CPU-only, sin deps no usadas
+# =============================================
+
+# --- PyTorch CPU-only (DEBE ir primero) ---
+# Reduce imagen Docker de ~3 GB a ~1.2 GB
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+
+# --- HTML Parser (usado por import-html CLI) ---
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# --- Config ---
+python-dotenv>=1.0.0
+
+# --- CLI (click + rich para __main__.py) ---
+click>=8.0.0
+rich>=13.0.0
+
+# --- Busqueda y Embeddings ---
+sentence-transformers>=2.2.0
+numpy>=1.24.0
+
+# --- Interfaz Web ---
+gradio>=4.0.0
+
+# --- LLM via OpenRouter ---
+httpx>=0.27.0
+
+# =============================================
+# ELIMINADAS (no se usan en el codigo):
+#   sqlalchemy  - los repos usan sqlite3 directo
+#   pydantic    - no se importa en ningun modulo
+#   pyyaml      - no se importa en ningun modulo
+#   telethon    - solo para sincronizacion futura
+# =============================================

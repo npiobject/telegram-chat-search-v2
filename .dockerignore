@@ -1,0 +1,24 @@
+# No copiar al contenedor Docker
+.git/
+.gitignore
+.claude/
+.env
+__pycache__/
+*.pyc
+*.pyo
+
+# Datos fuente (ya procesados en la BD)
+chats/
+sessions/
+
+# Cache local del modelo (se pre-descarga en el builder)
+temp_hf/
+
+# Documentacion no necesaria en runtime
+README.md
+CLAUDE.md
+*.md
+
+# El propio Dockerfile
+Dockerfile
+.dockerignore
