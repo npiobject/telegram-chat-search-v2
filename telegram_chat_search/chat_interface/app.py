@@ -10,6 +10,7 @@ from ..config import config
 from ..search.hybrid_search import HybridSearch, SearchResult
 from ..database.repositories import ImportantUserRepository
 from ..llm.summarizer import OpenRouterSummarizer, MockSummarizer
+from ..search.filters import es_mensaje_bajo_valor
 # from .deep_links import generate_telegram_links, format_links_markdown
 
 logger = logging.getLogger(__name__)
@@ -115,6 +116,9 @@ class TelegramChatBot:
         # Buscar mensajes relevantes
         # results = self.search_engine.search(query, top_k=15)
         results = self.search_engine.search(query, top_k=50)
+
+        # Filtrar mensajes de bajo valor (monosilabos, risas, etc.)
+        results = [r for r in results if not es_mensaje_bajo_valor(r.message.text_clean)]
 
         if not results:
             return f"""

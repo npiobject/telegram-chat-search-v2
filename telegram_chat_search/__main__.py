@@ -268,6 +268,7 @@ def stats(database):
 def search(query, database, top_k):
     """Búsqueda rápida desde línea de comandos"""
     from .search.hybrid_search import HybridSearch
+    from .search.filters import es_mensaje_bajo_valor
     from .chat_interface.deep_links import generate_telegram_link
 
     database = database or config.database_path
@@ -277,6 +278,9 @@ def search(query, database, top_k):
     console.print(f"\n[bold]🔍 Buscando:[/] {query}\n")
 
     results = search_engine.search(query, top_k=top_k)
+
+    # Filtrar mensajes de bajo valor (monosilabos, risas, etc.)
+    results = [r for r in results if not es_mensaje_bajo_valor(r.message.text_clean)]
 
     for i, result in enumerate(results, 1):
         msg = result.message
